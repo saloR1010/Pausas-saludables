@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Generador de pausas activas: 3 pasos, regla 20-20-20 y respiración, con texto listo para Telegram.">
+  <title>Pausa 🌿 · Pausas activas</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <button id="tema" class="tema" type="button" aria-label="Cambiar a modo oscuro" aria-pressed="false">🌙</button>
+
+  <main class="app">
+    <header class="hero">
+      <span class="eyebrow">Pausa activa</span>
+      <h1>Pausa <span aria-hidden="true">🌿</span></h1>
+      <p>Elige cuánto tiempo tienes. Te devuelvo tres pasos claros y un texto listo para copiar a Telegram.</p>
+    </header>
+
+    <section class="panel" aria-labelledby="elegir-titulo">
+      <h2 id="elegir-titulo">¿Cuánto tiempo tienes? <span id="etiqueta-duracion" class="etiqueta">4 min</span></h2>
+      <div class="duraciones" role="group" aria-label="Duración de la pausa">
+        <button class="chip" type="button" data-min="2" aria-pressed="false">2 min</button>
+        <button class="chip" type="button" data-min="3" aria-pressed="false">3 min</button>
+        <button class="chip is-active" type="button" data-min="4" aria-pressed="true">4 min</button>
+        <button class="chip" type="button" data-min="5" aria-pressed="false">5 min</button>
+        <button class="chip" type="button" data-min="10" aria-pressed="false">10 min</button>
+      </div>
+      <div class="custom">
+        <label for="personalizada">Otro tiempo (2–60 min, pasos de 0,5 min)</label>
+        <div class="custom-row">
+          <input id="personalizada" type="number" min="2" max="60" step="0.5" value="7" inputmode="decimal">
+          <button id="aplicar" class="btn" type="button">Usar este tiempo</button>
+        </div>
+        <p id="error-duracion" class="error" role="alert" hidden></p>
+      </div>
+      <div class="acciones">
+        <button id="generar" class="btn btn-primary" type="button">Generar mi pausa</button>
+        <label class="check"><input type="checkbox" id="sonido" checked> Aviso sonoro</label>
+      </div>
+    </section>
+
+    <section id="resultado" class="resultado" hidden>
+      <div class="resultado-cabecera">
+        <h2 id="titulo-pausa"></h2>
+        <p id="felicitacion" class="felicitacion"></p>
+      </div>
+
+      <div class="timer">
+        <div class="timer-row">
+          <span id="timer-estado" aria-live="polite">Lista cuando tú quieras.</span>
+          <span id="timer-cuenta">00:00</span>
+        </div>
+        <div id="barra" class="barra" role="progressbar" aria-label="Progreso de la pausa" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <span id="barra-relleno"></span>
+        </div>
+        <div class="timer-acciones">
+          <button id="iniciar" class="btn" type="button">Iniciar guía</button>
+          <button id="detener" class="btn btn-ghost" type="button" hidden>Detener</button>
+        </div>
+      </div>
+
+      <ol id="pasos" class="pasos"></ol>
+
+      <div class="telegram">
+        <div class="telegram-head">
+          <h3>Versión Telegram <span class="normal">(máx. 3 líneas)</span></h3>
+          <button id="copiar" class="btn btn-small" type="button">Copiar</button>
+        </div>
+        <pre id="telegram-texto"></pre>
+      </div>
+    </section>
+
+    <footer>
+      <p>Regla 20-20-20 · Inspira 4 s, espira 6 s · Basado en <code>pausas-activas.md</code></p>
+    </footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
